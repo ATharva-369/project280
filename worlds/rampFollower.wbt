@@ -1,0 +1,71 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Parquetry.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.2559454978346551 0.064315804304714 0.9645493141642931 2.6660066226512082
+  position 1.8741105510549434 -0.8593682161199288 1.169742097917913
+  follow "rampFollower"
+}
+TexturedBackground {
+  texture "mars"
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorAppearance Parquetry {
+    type "dark strip"
+  }
+}
+PointLight {
+  attenuation 0 0 1
+  intensity 0.6
+  location 0.6 0 0
+}
+DEF RAMP Solid {
+  translation 0 0 0.15
+  rotation 0 1 0 0.4
+  scale 0.8 0.8 0.8
+  children [
+    Shape {
+      appearance Parquetry {
+        type "dark strip"
+      }
+      geometry Box {
+        size 0.8 0.2 0.02
+      }
+    }
+  ]
+}
+DEF ramp_bot Robot {
+  translation -0.1496 -0.0357096 0.272203
+  rotation -0.04786250356251995 -0.7311850544238422 -0.6804980506510881 2.6516003061004256
+  children [
+    Transform {
+      translation 0 0 0.0415
+      rotation 1 0 0 -1.5707953071795862
+      children [
+        DEF body Shape {
+          appearance PBRAppearance {
+            baseColor 0.831373 0.941176 0
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    Altimeter {
+    }
+  ]
+  name "rampFollower"
+  contactMaterial "body"
+}
